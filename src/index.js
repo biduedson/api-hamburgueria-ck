@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
 
-const app = require('./server.js')
+import app from './server.js'
 
 app.use(express.json())
 
