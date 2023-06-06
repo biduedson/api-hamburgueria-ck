@@ -1,10 +1,10 @@
 import express from "express";
-import { hamburguerList } from "../controllers/getController.js"
+import { hamburguerList, bebidasList, combosList } from "../controllers/getController.js"
 const getRoutes = express.Router();
 
 getRoutes.get("/hamburguers", hamburguerList)
-getRoutes.get("/bebidas")
-getRoutes.get("/combos")
+getRoutes.get("/bebidas", bebidasList)
+getRoutes.get("/combos", combosList)
 
 export default getRoutes
 
