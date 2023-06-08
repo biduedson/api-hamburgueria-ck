@@ -6,11 +6,18 @@ export async function userRegister(req, res) {
 
     try {
         const { user_name, email, senha } = req.body
+        const client = await pool.connect();
+
+        const SelctQuery = 'SELECT * FROM users WHERE email = $1'
+        const emailValue = [email]
+        const result = await client.query(SelctQuery, emailValue)
+
+        const rows = result.rows;
+
+        if (rows.length > 0) return res.status(400).json({ message: 'Já existe um usuário cadastrado com o  email informado' })
 
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(senha, salt)
-
-        const client = await pool.connect();
         const query = "INSERT INTO users (user_name, email, senha ) VALUES ($1, $2, $3)"
         const values = [
             user_name,
@@ -18,7 +25,8 @@ export async function userRegister(req, res) {
             hash
         ]
         await client.query(query, values)
-        res.status(200).json({ message: 'Registro realizado com sucesso' })
+        client.release()
+        res.status(200).json({ message: 'Usuário cadastrado  com sucesso.' })
     } catch (err) {
         console.log('Erro ao inserir os dados de registro', err)
         res.status(500).json({ error: 'Erro ao inserir os dados' })

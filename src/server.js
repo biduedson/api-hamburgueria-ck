@@ -1,4 +1,6 @@
+
 import express from 'express'
+import cookieParser from "cookie-parser"
 import getRoutes from './routes/getRoutes.js'
 import deleteRoutes from './routes/deleteRoutes.js'
 import postRoutes from './routes/postRoutes.js'
@@ -8,6 +10,7 @@ import authRoutes from './routes/authRoutes.js'
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/api/auth', authRoutes)
 app.use('/api/post', postRoutes)
