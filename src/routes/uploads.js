@@ -1,8 +1,8 @@
-import express from "express";
+const express = require("express");
 const uploadRoute = express.Router();
 
 uploadRoute.post("/upload")
 
-export default uploadRoute
+module.exports = uploadRoute
 
 

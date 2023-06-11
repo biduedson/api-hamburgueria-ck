@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export function hambuguerPost(req, res, next) {
+function hambuguerPost(req, res, next) {
 
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Não autorizadda")
@@ -27,7 +27,7 @@ export function hambuguerPost(req, res, next) {
 
 }
 
-export function bebidasPost(req, res, next) {
+function bebidasPost(req, res, next) {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Não autorizadda")
 
@@ -50,7 +50,7 @@ export function bebidasPost(req, res, next) {
     })
 }
 
-export function combosPost(req, res, next) {
+function combosPost(req, res, next) {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Não autorizadda")
 
@@ -72,4 +72,10 @@ export function combosPost(req, res, next) {
         next()
     })
 
+}
+
+module.exports = {
+    hambuguerPost,
+    bebidasPost,
+    combosPost
 }

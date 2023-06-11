@@ -1,12 +1,13 @@
 
-import express from 'express'
-import cookieParser from "cookie-parser"
-import getRoutes from './routes/getRoutes.js'
-import deleteRoutes from './routes/deleteRoutes.js'
-import postRoutes from './routes/postRoutes.js'
-import patchRoute from './routes/patchroutes.js'
-import uploadRoute from './routes/uploads.js'
-import authRoutes from './routes/authRoutes.js'
+const express = require('express')
+const cookieParser = require("cookie-parser")
+const getRoutes = require('./routes/getRoutes.js')
+const deleteRoutes = require('./routes/deleteRoutes.js')
+const postRoutes = require('./routes/postRoutes.js')
+const patchRoute = require('./routes/patchroutes.js')
+const uploadRoute = require('./routes/uploads.js')
+const authRoutes = require('./routes/authRoutes.js')
+
 const app = express()
 
 app.use(express.json())
@@ -21,4 +22,4 @@ app.use('/api/uploads', uploadRoute)
 
 
 
-export default app
+module.exports = app 

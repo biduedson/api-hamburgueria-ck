@@ -1,6 +1,6 @@
-import pool from "../models/database.js";
+const pool = require("../models/database.js");
 
-export async function addHamburguer(req, res) {
+async function addHamburguer(req, res) {
     try {
         const { hamburguer_name, description, preco, image } = req.body
         const client = await pool.connect()
@@ -20,7 +20,7 @@ export async function addHamburguer(req, res) {
     }
 }
 
-export async function addBebidas(req, res) {
+async function addBebidas(req, res) {
     try {
         const { refri_name, description, preco, image } = req.body
         const client = await pool.connect()
@@ -40,7 +40,7 @@ export async function addBebidas(req, res) {
     }
 }
 
-export async function addCombos(req, res) {
+async function addCombos(req, res) {
     try {
         const { combo_name, description, preco, image } = req.body
         const client = await pool.connect()
@@ -58,4 +58,10 @@ export async function addCombos(req, res) {
         console.log('Erro ao inserir os dados', err)
         res.status(400).json({ Message: 'Erro ao inserir os dados' })
     }
+}
+
+module.exports = {
+    addHamburguer,
+    addBebidas,
+    addCombos,
 }

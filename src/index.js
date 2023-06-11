@@ -1,6 +1,7 @@
-import express from 'express'
-import app from './server.js'
-import multer from 'multer'
+const express = require('express')
+const app = require('./server')
+const multer = require('multer')
+
 
 app.use(express.json())
 
@@ -13,7 +14,8 @@ const storage = multer.diskStorage({
     }
 })
 
-export const upload = multer({ storage })
+const upload = multer({ storage })
+module.exports = upload
 
 app.listen(8080, () => {
     console.log('Servidor rodando!')

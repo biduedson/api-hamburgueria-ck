@@ -1,4 +1,4 @@
-export function validateRegister(req, res, next) {
+function validateRegister(req, res, next) {
     const { user_name, email, senha } = req.body
     if (!user_name) {
         return res.status(400).json({ Message: "Campo usuario não pode estar vazio" })
@@ -14,7 +14,7 @@ export function validateRegister(req, res, next) {
     next()
 }
 
-export function validateLogin(req, res, next) {
+function validateLogin(req, res, next) {
     const { email, senha } = req.body
 
     if (!email) {
@@ -25,4 +25,9 @@ export function validateLogin(req, res, next) {
         return res.status(400).json({ Message: "Campo senha não pode estar vazio" })
     }
     next()
+}
+
+module.exports = {
+    validateLogin,
+    validateRegister
 }

@@ -1,6 +1,6 @@
-import express from "express";
-import { hambuguerPost, bebidasPost, combosPost } from "../middlewares/validationPosts.js";
-import { addHamburguer, addBebidas, addCombos } from "../controllers/postController.js";
+const express = require("express");
+const { hambuguerPost, bebidasPost, combosPost } = require("../middlewares/validationPosts.js");
+const { addHamburguer, addBebidas, addCombos } = require("../controllers/postController.js");
 
 const postRoutes = express.Router();
 
@@ -9,6 +9,6 @@ postRoutes.post("/hamburguers", hambuguerPost, addHamburguer)
 postRoutes.post("/bebidas", bebidasPost, addBebidas)
 postRoutes.post("/combos", combosPost, addCombos)
 
-export default postRoutes
+module.exports = postRoutes
 
 

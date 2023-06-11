@@ -1,8 +1,8 @@
-import pool from "../models/database.js"
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+const pool = require("../models/database.js")
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-export async function userRegister(req, res) {
+async function userRegister(req, res) {
 
     try {
         const { user_name, email, senha } = req.body
@@ -35,7 +35,7 @@ export async function userRegister(req, res) {
 
 }
 
-export async function authLogin(req, res) {
+async function authLogin(req, res) {
     try {
         const { email, senha } = req.body
         const client = await pool.connect();
@@ -68,4 +68,9 @@ export async function authLogin(req, res) {
 
     }
 
+}
+
+module.exports = {
+    userRegister,
+    authLogin
 }

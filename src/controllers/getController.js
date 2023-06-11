@@ -1,6 +1,6 @@
-import pool from "../models/database.js"
+const pool = require("../models/database.js")
 
-export async function hamburguerList(req, res) {
+async function hamburguerList(req, res) {
     try {
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM hamburguers')
@@ -13,7 +13,7 @@ export async function hamburguerList(req, res) {
     }
 }
 
-export async function bebidasList(req, res) {
+async function bebidasList(req, res) {
     try {
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM bebidas')
@@ -26,7 +26,7 @@ export async function bebidasList(req, res) {
     }
 }
 
-export async function combosList(req, res) {
+async function combosList(req, res) {
     try {
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM combos');
@@ -37,5 +37,11 @@ export async function combosList(req, res) {
         console.log('Erro ao consultar os dados solicitados', err)
         res.status(500).json({ error: 'Erro ao consultar os dados' })
     }
+}
+
+module.exports = {
+    hamburguerList,
+    bebidasList,
+    combosList
 }
 
