@@ -1,6 +1,8 @@
 const pool = require("../models/database.js")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require('dotenv').config()
+
 
 async function userRegister(req, res) {
 
@@ -56,7 +58,7 @@ async function authLogin(req, res) {
             res.status(400).json({ message: 'Usuario ou senha incorretos' })
         }
 
-        const token = jwt.sign({ id: rows[0].id }, '@443156ghtps78365', {
+        const token = jwt.sign({ id: rows[0].id }, process.env.JWT_PASS, {
             expiresIn: '30m'
         })
         const { senha: retiraSenha, ...rest } = rows[0]
