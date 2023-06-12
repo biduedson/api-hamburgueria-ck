@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const { hambuguerPost, bebidasPost, combosPost } = require("../middlewares/validationPosts.js");
 const { addHamburguer, addBebidas, addCombos } = require("../controllers/postController.js");
 
