@@ -1,4 +1,4 @@
-const pool = require("../models/database.js")
+const pool = require('../models/database.js')
 
 async function hamburguerList(req, res) {
     try {
