@@ -1,62 +1,43 @@
 const pool = require('../models/database.js');
 
 async function addHamburguer(req, res) {
+    const { hamburguer_name, description, preco, image } = req.body
+
     try {
-        const { hamburguer_name, description, preco, image } = req.body
-        const client = await pool.connect()
-        const query = 'INSERT INTO hamburguers (hamburguer_name, description, preco, image) VALUES ($1, $2, $3, $4)'
-        const values = [
-            hamburguer_name,
-            description,
-            preco,
-            image
-        ]
-        await client.query(query, values)
-        client.release();
-        res.status(201).json({ Message: 'Hamburguer inserido no menu com sucesso' })
+        const newHamburguer = await pool.query(
+            `INSERT INTO hamburguers (hamburguer_name, description, preco, image) 
+             VALUES ($1, $2, $3, $4) returning *`, [hamburguer_name, description, preco, image])
+
+        return res.status(201).json(newHamburguer.rows[0])
     } catch (err) {
-        console.log('Erro ao inserir os dados', err)
-        res.status(400).json({ Message: 'Erro ao inserir os dados' })
+        return res.status(400).json({ Message: 'Erro ao inserir os dados' })
     }
 }
 
 async function addBebidas(req, res) {
+    const { refri_name, description, preco, image } = req.body
+
     try {
-        const { refri_name, description, preco, image } = req.body
-        const client = await pool.connect()
-        const query = 'INSERT INTO bebidas (refri_name, description, preco, image) VALUES ($1, $2, $3, $4)'
-        const values = [
-            refri_name,
-            description,
-            preco,
-            image
-        ]
-        await client.query(query, values)
-        client.release();
-        res.status(201).json({ Message: 'Bebida inserida no menu com sucesso' })
+        const newBebida = await pool.query(
+            `INSERT INTO bebidas (refri_name, description, preco, image) 
+                 VALUES ($1, $2, $3, $4) returning *`, [refri_name, description, preco, image])
+        return res.status(201).json(newBebida.rows[0])
+
     } catch (err) {
-        console.log('Erro ao inserir os dados', err)
-        res.status(400).json({ Message: 'Erro ao inserir os dados' })
+        return res.status(500).json({ Message: 'Erro ao inserir os dados' })
     }
 }
 
 async function addCombos(req, res) {
+    const { combo_name, description, preco, image } = req.body
+
     try {
-        const { combo_name, description, preco, image } = req.body
-        const client = await pool.connect()
-        const query = 'INSERT INTO combos (combo_name, description, preco, image) VALUES ($1, $2, $3, $4)'
-        const values = [
-            combo_name,
-            description,
-            preco,
-            image
-        ]
-        await client.query(query, values)
-        client.release();
-        res.status(201).json({ Message: 'Combo inserido no menu com sucesso' })
+        const newCombo = await pool.query(
+            `INSERT INTO combos (combo_name, description, preco, image) 
+                 VALUES ($1, $2, $3, $4) returning *`, [combo_name, description, preco, image])
+        return res.status(201).json(newCombo.rows[0])
     } catch (err) {
-        console.log('Erro ao inserir os dados', err)
-        res.status(400).json({ Message: 'Erro ao inserir os dados' })
+        return res.status(500).json({ Message: 'Erro ao inserir os dados' })
     }
 }
 

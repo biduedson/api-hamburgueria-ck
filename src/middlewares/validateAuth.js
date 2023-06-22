@@ -25,6 +25,7 @@ function validateLogin(req, res, next) {
         return res.status(400).json({ Message: "Campo senha não pode estar vazio" })
     }
     next()
+
 }
 
 module.exports = {
