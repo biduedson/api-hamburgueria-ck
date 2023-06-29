@@ -1,4 +1,5 @@
 const pool = require('../models/database.js');
+const httpErrors = require('../helpers/httpErrors.js')
 
 
 async function deleteHamburguer(req, res) {
@@ -14,7 +15,7 @@ async function deleteHamburguer(req, res) {
         const data = result.rows
 
 
-        if (data.length === 0) return res.status(404).json({ Message: 'Item não encontrado' })
+        if (data.length === 0) return httpErrors.itemNaoEncontrado(res)
 
         await client.query(deleteQuery, values)
         client.release()
@@ -36,7 +37,7 @@ async function deleteBebida(req, res) {
         const values = [Number(id)]
         const result = await client.query(querySelect, values)
 
-        if (result.rows.length === 0) return res.status(404).json({ Message: 'Item não encontrado' })
+        if (result.rows.length === 0) return httpErrors.itemNaoEncontrado(res)
 
         await client.query(deleteQuery, values)
         client.release()
@@ -58,7 +59,7 @@ async function deleteCombos(req, res) {
         const values = [Number(id)]
         const result = await client.query(querySelect, values)
 
-        if (result.rows.length === 0) return res.status(404).json({ Message: 'Item não encontrado' })
+        if (result.rows.length === 0) return httpErrors.itemNaoEncontrado(res)
 
         await client.query(deleteQuery, values)
         client.release()
