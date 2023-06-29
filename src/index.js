@@ -17,4 +17,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 module.exports = upload
 
+<<<<<<< HEAD
 app.listen(8080)
+=======
+app.listen(3000)
+>>>>>>> 96f9cd6566e076b838566cbc93148ddf1c106df5
