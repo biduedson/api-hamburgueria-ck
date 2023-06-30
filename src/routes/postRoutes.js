@@ -4,7 +4,6 @@ const { addHamburguer, addBebidas, addCombos } = require("../controllers/postCon
 const userAuthentication = require('../middlewares/authentication.js')
 const postRoutes = express.Router();
 
-
 postRoutes.use(userAuthentication)
 
 postRoutes.post("/hamburguers", hambuguerPost, addHamburguer)
